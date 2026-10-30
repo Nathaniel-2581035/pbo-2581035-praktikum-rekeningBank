@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Rekening {
     private String nomor;
     private String pemilik;
@@ -47,6 +49,30 @@ public class Rekening {
                 return "Rp" + hasil;
         }
 
+        import java.util.Scanner;
 
+        public class BankMini {
+                public static void main(String[] args) {
+                        Scanner input = new Scanner(System.in);
+                        Rekening rekening = new Rekening("001", "Ani", 100000);
+
+                        int pilihan;
+                        do {
+                                System.out.println("\n=== BANK MINI ===");
+                                System.out.println("1. Setor");
+                                System.out.println("2. Tarik");
+                                System.out.println("3. Info");
+                                System.out.println("0. Keluar");
+                                System.out.print("Pilih: ");
+                                pilihan = input.nextInt();
+
+                                if (pilihan == 3) {
+                                        rekening.cetakInfo();
+                                } else if (pilihan != 0) {
+                                        System.out.println("Menu tidak dikenal");
+                                }
+                        } while (pilihan != 0);
+                }
+        }
 }
 
