@@ -1,32 +1,52 @@
 public class Rekening {
-        private String nomor;
-        private String pemilik;
-        private int saldo;
+    private String nomor;
+    private String pemilik;
+    private int saldo;
 
-        public Rekening(String nomor, String pemilik, int saldo) {
-                this.nomor = nomor;
-                this.pemilik = pemilik;
-                this.saldo = saldo;
+    public Rekening(String nomor, String pemilik, int saldo) {
+        this.nomor = nomor;
+        this.pemilik = pemilik;
+        this.saldo = saldo;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public boolean setor(int jumlah) {
+        if (jumlah <= 0) {
+            return false;
         }
-        public int getSaldo () {
-                return saldo;
+        saldo = jumlah + saldo;
+        return true;
+    }
+
+    public boolean tarik(int jumlah) {
+        if (jumlah <= 0 || jumlah > saldo) {
+            return false;
         }
-        public boolean setor(int jumlah) {
-                if (jumlah <= 0) {
-                        return false;
-                }
-                saldo = jumlah + saldo;
-                return true;
-        }
-        public boolean tarik(int jumlah) {
-                if (jumlah <= 0 || jumlah > saldo) {
-                        return false;
-                }
-             saldo = saldo - jumlah;
-                return true;
-        }
+        saldo = saldo - jumlah;
+        return true;
+    }
+
         public void cetakInfo() {
-                System.out.println(nomor + "|" + pemilik + "|" + saldo);
+                System.out.println(nomor + " | " + pemilik + " | " + formatRupiah(saldo));
         }
+
+        private String formatRupiah(int angka) {
+                String digit = String.valueOf(angka);
+                String hasil = "";
+                int hitung = 0;
+                for (int i = digit.length() - 1; i >= 0; i--) {
+                        hasil = digit.charAt(i) + hasil;
+                        hitung++;
+                        if (hitung % 3 == 0 && i > 0) {
+                                hasil = "." + hasil;
+                        }
+                }
+                return "Rp" + hasil;
+        }
+
+
 }
 
